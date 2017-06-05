@@ -58,11 +58,11 @@ namespace RecruitSpike
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "740254860612-mshvtgn1lduudagaqo6oak02kj30mt5v.apps.googleusercontent.com",
+                ClientSecret = "UuNEPIp367dYjzcioFyHnGIj"
+            });
         }
     }
 }
