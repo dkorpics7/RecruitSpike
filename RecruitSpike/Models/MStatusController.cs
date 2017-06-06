@@ -6,111 +6,110 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using RecruitSpike.Models;
 
-namespace RecruitSpike.Controllers
+namespace RecruitSpike.Models
 {
-    public class MaritalStatusController : Controller
+    public class MStatusController : Controller
     {
         private RecruitSpikeEntities db = new RecruitSpikeEntities();
 
-        // GET: MaritalStatus
+        // GET: MStatus
         public ActionResult Index()
         {
-            return View(db.MaritalStatus.ToList());
+            return View(db.MStatus.ToList());
         }
 
-        // GET: MaritalStatus/Details/5
+        // GET: MStatus/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MaritalStatu maritalStatu = db.MaritalStatus.Find(id);
-            if (maritalStatu == null)
+            MStatu mStatu = db.MStatus.Find(id);
+            if (mStatu == null)
             {
                 return HttpNotFound();
             }
-            return View(maritalStatu);
+            return View(mStatu);
         }
 
-        // GET: MaritalStatus/Create
+        // GET: MStatus/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MaritalStatus/Create
+        // POST: MStatus/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaritalStatusID,Status")] MaritalStatu maritalStatu)
+        public ActionResult Create([Bind(Include = "MStatusID,Status")] MStatu mStatu)
         {
             if (ModelState.IsValid)
             {
-                db.MaritalStatus.Add(maritalStatu);
+                db.MStatus.Add(mStatu);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(maritalStatu);
+            return View(mStatu);
         }
 
-        // GET: MaritalStatus/Edit/5
+        // GET: MStatus/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MaritalStatu maritalStatu = db.MaritalStatus.Find(id);
-            if (maritalStatu == null)
+            MStatu mStatu = db.MStatus.Find(id);
+            if (mStatu == null)
             {
                 return HttpNotFound();
             }
-            return View(maritalStatu);
+            return View(mStatu);
         }
 
-        // POST: MaritalStatus/Edit/5
+        // POST: MStatus/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaritalStatusID,Status")] MaritalStatu maritalStatu)
+        public ActionResult Edit([Bind(Include = "MStatusID,Status")] MStatu mStatu)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(maritalStatu).State = EntityState.Modified;
+                db.Entry(mStatu).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(maritalStatu);
+            return View(mStatu);
         }
 
-        // GET: MaritalStatus/Delete/5
+        // GET: MStatus/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MaritalStatu maritalStatu = db.MaritalStatus.Find(id);
-            if (maritalStatu == null)
+            MStatu mStatu = db.MStatus.Find(id);
+            if (mStatu == null)
             {
                 return HttpNotFound();
             }
-            return View(maritalStatu);
+            return View(mStatu);
         }
 
-        // POST: MaritalStatus/Delete/5
+        // POST: MStatus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MaritalStatu maritalStatu = db.MaritalStatus.Find(id);
-            db.MaritalStatus.Remove(maritalStatu);
+            MStatu mStatu = db.MStatus.Find(id);
+            db.MStatus.Remove(mStatu);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

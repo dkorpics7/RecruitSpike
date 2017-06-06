@@ -213,9 +213,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainstepsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MaritalStatusController.cs" />
     <Compile Include="Controllers\PriorServicesController.cs" />
-    <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\RoadmapsController.cs" />
     <Compile Include="Controllers\SubstepsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,6 +232,9 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>RecruitSpike.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Education.cs">
       <DependentUpon>RecruitSpike.tt</DependentUpon>
     </Compile>
@@ -245,15 +246,17 @@
       <DependentUpon>RecruitSpike.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MaritalStatu.cs">
+    <Compile Include="Models\MStatu.cs">
       <DependentUpon>RecruitSpike.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MStatusController.cs" />
     <Compile Include="Models\PriorService.cs">
       <DependentUpon>RecruitSpike.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Profile.cs">
       <DependentUpon>RecruitSpike.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfilesController.cs" />
     <Compile Include="Models\RecruitSpike.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -385,11 +388,6 @@
     <Content Include="Views\Mainsteps\Details.cshtml" />
     <Content Include="Views\Mainsteps\Edit.cshtml" />
     <Content Include="Views\Mainsteps\Index.cshtml" />
-    <Content Include="Views\MaritalStatus\Create.cshtml" />
-    <Content Include="Views\MaritalStatus\Delete.cshtml" />
-    <Content Include="Views\MaritalStatus\Details.cshtml" />
-    <Content Include="Views\MaritalStatus\Edit.cshtml" />
-    <Content Include="Views\MaritalStatus\Index.cshtml" />
     <Content Include="Views\PriorServices\Create.cshtml" />
     <Content Include="Views\PriorServices\Delete.cshtml" />
     <Content Include="Views\PriorServices\Details.cshtml" />
@@ -410,6 +408,11 @@
     <Content Include="Views\Substeps\Details.cshtml" />
     <Content Include="Views\Substeps\Edit.cshtml" />
     <Content Include="Views\Substeps\Index.cshtml" />
+    <Content Include="Views\MStatus\Create.cshtml" />
+    <Content Include="Views\MStatus\Delete.cshtml" />
+    <Content Include="Views\MStatus\Details.cshtml" />
+    <Content Include="Views\MStatus\Edit.cshtml" />
+    <Content Include="Views\MStatus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

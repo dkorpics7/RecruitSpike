@@ -26,15 +26,15 @@ namespace RecruitSpike.Models
         public Nullable<decimal> AsvabScore { get; set; }
         public Nullable<decimal> PracticeScore { get; set; }
         public int EducationID { get; set; }
-        public int MaritalStatusID { get; set; }
         public int PriorServiceID { get; set; }
         public int RoadmapID { get; set; }
         public string Id { get; set; }
+        public int MStatusID { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Education Education { get; set; }
-        public virtual MaritalStatu MaritalStatu { get; set; }
         public virtual PriorService PriorService { get; set; }
         public virtual Roadmap Roadmap { get; set; }
+        public virtual MStatu MStatu { get; set; }
     }
 }

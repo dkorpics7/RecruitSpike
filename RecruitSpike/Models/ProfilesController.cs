@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using RecruitSpike.Models;
 
-namespace RecruitSpike.Controllers
+namespace RecruitSpike.Models
 {
     public class ProfilesController : Controller
     {
@@ -17,7 +16,7 @@ namespace RecruitSpike.Controllers
         // GET: Profiles
         public ActionResult Index()
         {
-            var profiles = db.Profiles.Include(p => p.AspNetUser).Include(p => p.Education).Include(p => p.MaritalStatu).Include(p => p.PriorService).Include(p => p.Roadmap);
+            var profiles = db.Profiles.Include(p => p.AspNetUser).Include(p => p.Education).Include(p => p.MStatu).Include(p => p.PriorService).Include(p => p.Roadmap).Include(p => p.MStatu);
             return View(profiles.ToList());
         }
 
@@ -41,9 +40,9 @@ namespace RecruitSpike.Controllers
         {
             ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EdLevel");
-            ViewBag.MaritalStatusID = new SelectList(db.MaritalStatus, "MaritalStatusID", "Status");
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "Service1");
             ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName");
+            ViewBag.MStatusID = new SelectList(db.MStatus, "MStatusID", "Status");
             return View();
         }
 
@@ -52,7 +51,7 @@ namespace RecruitSpike.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProfileID,FName,LName,DateOfBirth,Height,Weight,Dependents,Title,Branch,AsvabScore,PracticeScore,EducationID,MaritalStatusID,PriorServiceID,RoadmapID,Id")] Profile profile)
+        public ActionResult Create([Bind(Include = "ProfileID,FName,LName,DateOfBirth,Height,Weight,Dependents,Title,Branch,AsvabScore,PracticeScore,EducationID,MaritalStatusID,PriorServiceID,RoadmapID,Id,MStatusID")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -63,9 +62,9 @@ namespace RecruitSpike.Controllers
 
             ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EdLevel", profile.EducationID);
-            ViewBag.MaritalStatusID = new SelectList(db.MaritalStatus, "MaritalStatusID", "Status", profile.MaritalStatusID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "Service1", profile.PriorServiceID);
             ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", profile.RoadmapID);
+            ViewBag.MStatusID = new SelectList(db.MStatus, "MStatusID", "Status", profile.MStatusID);
             return View(profile);
         }
 
@@ -83,9 +82,9 @@ namespace RecruitSpike.Controllers
             }
             ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EdLevel", profile.EducationID);
-            ViewBag.MaritalStatusID = new SelectList(db.MaritalStatus, "MaritalStatusID", "Status", profile.MaritalStatusID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "Service1", profile.PriorServiceID);
             ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", profile.RoadmapID);
+            ViewBag.MStatusID = new SelectList(db.MStatus, "MStatusID", "Status", profile.MStatusID);
             return View(profile);
         }
 
@@ -94,7 +93,7 @@ namespace RecruitSpike.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProfileID,FName,LName,DateOfBirth,Height,Weight,Dependents,Title,Branch,AsvabScore,PracticeScore,EducationID,MaritalStatusID,PriorServiceID,RoadmapID,Id")] Profile profile)
+        public ActionResult Edit([Bind(Include = "ProfileID,FName,LName,DateOfBirth,Height,Weight,Dependents,Title,Branch,AsvabScore,PracticeScore,EducationID,PriorServiceID,RoadmapID,Id,MStatusID")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -104,9 +103,9 @@ namespace RecruitSpike.Controllers
             }
             ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EdLevel", profile.EducationID);
-            ViewBag.MaritalStatusID = new SelectList(db.MaritalStatus, "MaritalStatusID", "Status", profile.MaritalStatusID);
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "Service1", profile.PriorServiceID);
             ViewBag.RoadmapID = new SelectList(db.Roadmaps, "RoadmapID", "RoadmapName", profile.RoadmapID);
+            ViewBag.MStatusID = new SelectList(db.MStatus, "MStatusID", "Status", profile.MStatusID);
             return View(profile);
         }
 

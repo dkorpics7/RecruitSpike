@@ -28,7 +28,6 @@ namespace RecruitSpike.Models
         public virtual DbSet<Education> Educations { get; set; }
         public virtual DbSet<Heading> Headings { get; set; }
         public virtual DbSet<Mainstep> Mainsteps { get; set; }
-        public virtual DbSet<MaritalStatu> MaritalStatus { get; set; }
         public virtual DbSet<PriorService> PriorServices { get; set; }
         public virtual DbSet<Roadmap> Roadmaps { get; set; }
         public virtual DbSet<Substep> Substeps { get; set; }
@@ -38,5 +37,7 @@ namespace RecruitSpike.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<MStatu> MStatus { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
     }
 }

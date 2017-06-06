@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RecruitSpikeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -89,12 +99,12 @@
           <Property Name="Effort" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="RoadmapID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="MaritalStatus">
+        <EntityType Name="MStatus">
           <Key>
-            <PropertyRef Name="MaritalStatusID" />
+            <PropertyRef Name="MStatusID" />
           </Key>
-          <Property Name="MaritalStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="PriorService">
           <Key>
@@ -121,7 +131,7 @@
           <Property Name="AsvabScore" Type="decimal" Precision="18" Scale="0" />
           <Property Name="PracticeScore" Type="decimal" Precision="18" Scale="0" />
           <Property Name="EducationID" Type="int" Nullable="false" />
-          <Property Name="MaritalStatusID" Type="int" Nullable="false" />
+          <Property Name="MStatusID" Type="int" Nullable="false" />
           <Property Name="PriorServiceID" Type="int" Nullable="false" />
           <Property Name="RoadmapID" Type="int" Nullable="false" />
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -260,15 +270,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Profile_MaritalStatus">
-          <End Role="MaritalStatus" Type="Self.MaritalStatus" Multiplicity="1" />
+        <Association Name="FK_Profile_MStatus">
+          <End Role="MStatus" Type="Self.MStatus" Multiplicity="1" />
           <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MaritalStatus">
-              <PropertyRef Name="MaritalStatusID" />
+            <Principal Role="MStatus">
+              <PropertyRef Name="MStatusID" />
             </Principal>
             <Dependent Role="Profile">
-              <PropertyRef Name="MaritalStatusID" />
+              <PropertyRef Name="MStatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -309,6 +319,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RecruitSpikeModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -317,7 +328,7 @@
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Heading" EntityType="Self.Heading" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mainstep" EntityType="Self.Mainstep" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MaritalStatus" EntityType="Self.MaritalStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MStatus" EntityType="Self.MStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PriorService" EntityType="Self.PriorService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roadmap" EntityType="Self.Roadmap" Schema="dbo" store:Type="Tables" />
@@ -355,8 +366,8 @@
             <End Role="Education" EntitySet="Education" />
             <End Role="Profile" EntitySet="Profile" />
           </AssociationSet>
-          <AssociationSet Name="FK_Profile_MaritalStatus" Association="Self.FK_Profile_MaritalStatus">
-            <End Role="MaritalStatus" EntitySet="MaritalStatus" />
+          <AssociationSet Name="FK_Profile_MStatus" Association="Self.FK_Profile_MStatus">
+            <End Role="MStatus" EntitySet="MStatus" />
             <End Role="Profile" EntitySet="Profile" />
           </AssociationSet>
           <AssociationSet Name="FK_Profile_PriorService" Association="Self.FK_Profile_PriorService">
@@ -413,14 +424,6 @@
           <Property Name="RoadmapID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Headings" Relationship="Self.FK_Heading_Mainstep" FromRole="Mainstep" ToRole="Heading" />
           <NavigationProperty Name="Roadmap" Relationship="Self.FK_Mainstep_Roadmap" FromRole="Mainstep" ToRole="Roadmap" />
-        </EntityType>
-        <EntityType Name="MaritalStatu">
-          <Key>
-            <PropertyRef Name="MaritalStatusID" />
-          </Key>
-          <Property Name="MaritalStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Profiles" Relationship="RecruitSpikeModel.FK_Profile_MaritalStatus" FromRole="MaritalStatu" ToRole="Profile" />
         </EntityType>
         <EntityType Name="PriorService">
           <Key>
@@ -505,7 +508,6 @@
           <EntitySet Name="Educations" EntityType="Self.Education" />
           <EntitySet Name="Headings" EntityType="Self.Heading" />
           <EntitySet Name="Mainsteps" EntityType="Self.Mainstep" />
-          <EntitySet Name="MaritalStatus" EntityType="Self.MaritalStatu" />
           <EntitySet Name="PriorServices" EntityType="Self.PriorService" />
           <EntitySet Name="Roadmaps" EntityType="Self.Roadmap" />
           <EntitySet Name="Substeps" EntityType="Self.Substep" />
@@ -543,10 +545,6 @@
             <End Role="Education" EntitySet="Educations" />
             <End Role="Profile" EntitySet="Profiles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Profile_MaritalStatus" Association="RecruitSpikeModel.FK_Profile_MaritalStatus">
-            <End Role="MaritalStatu" EntitySet="MaritalStatus" />
-            <End Role="Profile" EntitySet="Profiles" />
-          </AssociationSet>
           <AssociationSet Name="FK_Profile_PriorService" Association="RecruitSpikeModel.FK_Profile_PriorService">
             <End Role="PriorService" EntitySet="PriorServices" />
             <End Role="Profile" EntitySet="Profiles" />
@@ -559,6 +557,12 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="MStatus" EntityType="RecruitSpikeModel.MStatu" />
+          <AssociationSet Name="FK_Profile_MStatus" Association="RecruitSpikeModel.FK_Profile_MStatus">
+            <End Role="MStatu" EntitySet="MStatus" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="RecruitSpikeModel.C__MigrationHistory" />
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -626,15 +630,15 @@
           <Property Name="AsvabScore" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="PracticeScore" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="EducationID" Type="Int32" Nullable="false" />
-          <Property Name="MaritalStatusID" Type="Int32" Nullable="false" />
           <Property Name="PriorServiceID" Type="Int32" Nullable="false" />
           <Property Name="RoadmapID" Type="Int32" Nullable="false" />
           <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="RecruitSpikeModel.FK_Profile_AspNetUsers" FromRole="Profile" ToRole="AspNetUser" />
           <NavigationProperty Name="Education" Relationship="RecruitSpikeModel.FK_Profile_Education" FromRole="Profile" ToRole="Education" />
-          <NavigationProperty Name="MaritalStatu" Relationship="RecruitSpikeModel.FK_Profile_MaritalStatus" FromRole="Profile" ToRole="MaritalStatu" />
           <NavigationProperty Name="PriorService" Relationship="RecruitSpikeModel.FK_Profile_PriorService" FromRole="Profile" ToRole="PriorService" />
           <NavigationProperty Name="Roadmap" Relationship="RecruitSpikeModel.FK_Profile_Roadmap" FromRole="Profile" ToRole="Roadmap" />
+          <Property Name="MStatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MStatu" Relationship="RecruitSpikeModel.FK_Profile_MStatus" FromRole="Profile" ToRole="MStatu" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="RecruitSpikeModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -688,18 +692,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Profile_MaritalStatus">
-          <End Type="RecruitSpikeModel.MaritalStatu" Role="MaritalStatu" Multiplicity="1" />
-          <End Type="RecruitSpikeModel.Profile" Role="Profile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MaritalStatu">
-              <PropertyRef Name="MaritalStatusID" />
-            </Principal>
-            <Dependent Role="Profile">
-              <PropertyRef Name="MaritalStatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Profile_PriorService">
           <End Type="RecruitSpikeModel.PriorService" Role="PriorService" Multiplicity="1" />
           <End Type="RecruitSpikeModel.Profile" Role="Profile" Multiplicity="*" />
@@ -728,6 +720,36 @@
           <End Type="RecruitSpikeModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="RecruitSpikeModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityType Name="MStatu">
+          <Key>
+            <PropertyRef Name="MStatusID" />
+          </Key>
+          <Property Name="MStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Profiles" Relationship="RecruitSpikeModel.FK_Profile_MStatus" FromRole="MStatu" ToRole="Profile" />
+        </EntityType>
+        <Association Name="FK_Profile_MStatus">
+          <End Type="RecruitSpikeModel.MStatu" Role="MStatu" Multiplicity="1" />
+          <End Type="RecruitSpikeModel.Profile" Role="Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MStatu">
+              <PropertyRef Name="MStatusID" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="MStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -767,14 +789,6 @@
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
                 <ScalarProperty Name="Effort" ColumnName="Effort" />
                 <ScalarProperty Name="RoadmapID" ColumnName="RoadmapID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MaritalStatus">
-            <EntityTypeMapping TypeName="RecruitSpikeModel.MaritalStatu">
-              <MappingFragment StoreEntitySet="MaritalStatus">
-                <ScalarProperty Name="MaritalStatusID" ColumnName="MaritalStatusID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -869,10 +883,10 @@
           <EntitySetMapping Name="Profiles">
             <EntityTypeMapping TypeName="RecruitSpikeModel.Profile">
               <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="MStatusID" ColumnName="MStatusID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RoadmapID" ColumnName="RoadmapID" />
                 <ScalarProperty Name="PriorServiceID" ColumnName="PriorServiceID" />
-                <ScalarProperty Name="MaritalStatusID" ColumnName="MaritalStatusID" />
                 <ScalarProperty Name="EducationID" ColumnName="EducationID" />
                 <ScalarProperty Name="PracticeScore" ColumnName="PracticeScore" />
                 <ScalarProperty Name="AsvabScore" ColumnName="AsvabScore" />
@@ -896,6 +910,24 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="MStatus">
+            <EntityTypeMapping TypeName="RecruitSpikeModel.MStatu">
+              <MappingFragment StoreEntitySet="MStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MStatusID" ColumnName="MStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="RecruitSpikeModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

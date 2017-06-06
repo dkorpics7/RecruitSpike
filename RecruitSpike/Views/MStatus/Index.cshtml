@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RecruitSpike.Models.MaritalStatu>
+﻿@model IEnumerable<RecruitSpike.Models.MStatu>
 
 @{
     ViewBag.Title = "Index";
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaritalStatusID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaritalStatusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaritalStatusID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.MStatusID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MStatusID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MStatusID })
         </td>
     </tr>
 }
