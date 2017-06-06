@@ -1,0 +1,138 @@
+﻿@model RecruitSpike.Models.Profile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dependents)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dependents)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Branch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AsvabScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AsvabScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PracticeScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PracticeScore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education.EdLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education.EdLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaritalStatu.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaritalStatu.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriorService.Service1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriorService.Service1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roadmap.RoadmapName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roadmap.RoadmapName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProfileID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

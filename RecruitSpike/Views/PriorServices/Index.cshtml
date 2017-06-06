@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RecruitSpike.Models.PriorService>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Service1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Service2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Service3)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Service3)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PriorServiceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PriorServiceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PriorServiceID })
+        </td>
+    </tr>
+}
+
+</table>

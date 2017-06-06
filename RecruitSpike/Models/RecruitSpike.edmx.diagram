@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7344d995eac458f8c133638dcb52361" Name="Diagram1">
+        <EntityTypeShape EntityType="RecruitSpikeModel.Education" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.Heading" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.Mainstep" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.MaritalStatu" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.PriorService" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.Roadmap" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.Substep" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.sysdiagram" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Heading_Mainstep" ManuallyRouted="false" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Substep_Heading" ManuallyRouted="false" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Mainstep_Roadmap" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.AspNetRole" Width="1.5" PointX="4.5" PointY="9.375" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.AspNetUserClaim" Width="1.5" PointX="9" PointY="13.5" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.AspNetUserLogin" Width="1.5" PointX="9" PointY="10.875" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.AspNetUser" Width="1.5" PointX="6.75" PointY="8.125" />
+        <EntityTypeShape EntityType="RecruitSpikeModel.Profile" Width="1.5" PointX="9" PointY="4.625" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Profile_AspNetUsers" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Profile_Education" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Profile_MaritalStatus" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Profile_PriorService" />
+        <AssociationConnector Association="RecruitSpikeModel.FK_Profile_Roadmap" />
+        <AssociationConnector Association="RecruitSpikeModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

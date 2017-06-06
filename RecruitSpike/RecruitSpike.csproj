@@ -124,6 +124,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -206,14 +208,76 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EducationsController.cs" />
+    <Compile Include="Controllers\HeadingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MainstepsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MaritalStatusController.cs" />
+    <Compile Include="Controllers\PriorServicesController.cs" />
+    <Compile Include="Controllers\ProfilesController.cs" />
+    <Compile Include="Controllers\RoadmapsController.cs" />
+    <Compile Include="Controllers\SubstepsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Education.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Heading.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Mainstep.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MaritalStatu.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PriorService.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Profile.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecruitSpike.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecruitSpike.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecruitSpike.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecruitSpike.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecruitSpike.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Roadmap.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Substep.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>RecruitSpike.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -237,7 +301,24 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\RecruitSpike.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RecruitSpike.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\RecruitSpike.edmx.diagram">
+      <DependentUpon>RecruitSpike.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Models\RecruitSpike.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RecruitSpike.edmx</DependentUpon>
+      <LastGenOutput>RecruitSpike.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\RecruitSpike.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RecruitSpike.edmx</DependentUpon>
+      <LastGenOutput>RecruitSpike.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -289,6 +370,46 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Educations\Create.cshtml" />
+    <Content Include="Views\Educations\Delete.cshtml" />
+    <Content Include="Views\Educations\Details.cshtml" />
+    <Content Include="Views\Educations\Edit.cshtml" />
+    <Content Include="Views\Educations\Index.cshtml" />
+    <Content Include="Views\Headings\Create.cshtml" />
+    <Content Include="Views\Headings\Delete.cshtml" />
+    <Content Include="Views\Headings\Details.cshtml" />
+    <Content Include="Views\Headings\Edit.cshtml" />
+    <Content Include="Views\Headings\Index.cshtml" />
+    <Content Include="Views\Mainsteps\Create.cshtml" />
+    <Content Include="Views\Mainsteps\Delete.cshtml" />
+    <Content Include="Views\Mainsteps\Details.cshtml" />
+    <Content Include="Views\Mainsteps\Edit.cshtml" />
+    <Content Include="Views\Mainsteps\Index.cshtml" />
+    <Content Include="Views\MaritalStatus\Create.cshtml" />
+    <Content Include="Views\MaritalStatus\Delete.cshtml" />
+    <Content Include="Views\MaritalStatus\Details.cshtml" />
+    <Content Include="Views\MaritalStatus\Edit.cshtml" />
+    <Content Include="Views\MaritalStatus\Index.cshtml" />
+    <Content Include="Views\PriorServices\Create.cshtml" />
+    <Content Include="Views\PriorServices\Delete.cshtml" />
+    <Content Include="Views\PriorServices\Details.cshtml" />
+    <Content Include="Views\PriorServices\Edit.cshtml" />
+    <Content Include="Views\PriorServices\Index.cshtml" />
+    <Content Include="Views\Profiles\Create.cshtml" />
+    <Content Include="Views\Profiles\Delete.cshtml" />
+    <Content Include="Views\Profiles\Details.cshtml" />
+    <Content Include="Views\Profiles\Edit.cshtml" />
+    <Content Include="Views\Profiles\Index.cshtml" />
+    <Content Include="Views\Roadmaps\Create.cshtml" />
+    <Content Include="Views\Roadmaps\Delete.cshtml" />
+    <Content Include="Views\Roadmaps\Details.cshtml" />
+    <Content Include="Views\Roadmaps\Edit.cshtml" />
+    <Content Include="Views\Roadmaps\Index.cshtml" />
+    <Content Include="Views\Substeps\Create.cshtml" />
+    <Content Include="Views\Substeps\Delete.cshtml" />
+    <Content Include="Views\Substeps\Details.cshtml" />
+    <Content Include="Views\Substeps\Edit.cshtml" />
+    <Content Include="Views\Substeps\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -298,6 +419,9 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

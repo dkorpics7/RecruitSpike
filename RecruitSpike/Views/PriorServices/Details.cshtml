@@ -1,0 +1,42 @@
+﻿@model RecruitSpike.Models.PriorService
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PriorService</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Service1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Service3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service3)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PriorServiceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
