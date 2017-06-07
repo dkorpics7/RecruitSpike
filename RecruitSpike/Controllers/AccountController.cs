@@ -164,7 +164,7 @@ namespace RecruitSpike.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     //return RedirectToAction("Index", "Home");
-                    return RedirectToAction("Index", "Profile");
+                    return RedirectToAction("Create", "Profiles");
 
                 }
                 AddErrors(result);
@@ -452,7 +452,7 @@ namespace RecruitSpike.Controllers
                 return Redirect(returnUrl);
             }
             //return RedirectToAction("Index", "Home");
-            return RedirectToAction("Index", "Profile");
+            return RedirectToAction("Create", "Profiles");
 
         }
 

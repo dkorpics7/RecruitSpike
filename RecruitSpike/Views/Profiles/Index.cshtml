@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="~/Home/Index#Mainstep1" onclick="switch_navbar('mainnav','firstStepsNav')">Get Started!</a> 
+    @*@Html.ActionLink("Get Started!", "Create")*@
 </p>
 <table class="table">
     <tr>
@@ -114,8 +115,8 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProfileID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProfileID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProfileID })
+            @*@Html.ActionLink("Details", "Details", new { id=item.ProfileID }) |*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.ProfileID })*@
         </td>
     </tr>
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace RecruitSpike.Models
 {
@@ -16,7 +17,16 @@ namespace RecruitSpike.Models
         // GET: Profiles
         public ActionResult Index()
         {
-            var profiles = db.Profiles.Include(p => p.AspNetUser).Include(p => p.Education).Include(p => p.MStatu).Include(p => p.PriorService).Include(p => p.Roadmap).Include(p => p.MStatu);
+            var currentUserId = User.Identity.GetUserId();
+            //can do this.... or....
+            //return RedirectToAction("Details",currentUserId);
+
+            //    var profiles = db.Profiles.Include(p => p.AspNetUser).Include(p => p.Education).Include(p => p.MStatu).Include(p => p.PriorService).Include(p => p.Roadmap).Include(p => p.MStatu);
+            //    return View(profiles.ToList());
+            //   ... this ...
+            var profiles = (from p in db.Profiles
+                            where p.Id==currentUserId
+                            select p);
             return View(profiles.ToList());
         }
 
@@ -38,6 +48,21 @@ namespace RecruitSpike.Models
         // GET: Profiles/Create
         public ActionResult Create()
         {
+            //check to see if user already has a profile
+            var profiles = db.Profiles.Include(p => p.AspNetUser).Include(p => p.Education).Include(p => p.MStatu).Include(p => p.PriorService).Include(p => p.Roadmap).Include(p => p.MStatu);
+            foreach (var p in profiles)
+            {
+                if(p.Id==User.Identity.GetUserId())
+                {
+                    // check progress on steps 1, 2, and 3 by checking IsDone.  Go to appropriate page.
+                    // may have to write a method that passes special info to view so that view can
+                    // go to correct location on page (e.g., #Mainstep2)      
+                    //          if() return RedirectToAction("Details", currentUserId);
+                    //for now, just send them to Index so that can scroll to mainstep 1
+                    return RedirectToAction("Index");
+                }
+            }
+            //create profile for new user
             ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EdLevel");
             ViewBag.PriorServiceID = new SelectList(db.PriorServices, "PriorServiceID", "Service1");
@@ -55,8 +80,11 @@ namespace RecruitSpike.Models
         {
             if (ModelState.IsValid)
             {
+                //set Id so user doesn't have to select it
+                profile.Id = User.Identity.GetUserId();
                 db.Profiles.Add(profile);
                 db.SaveChanges();
+                //return RedirectToAction("Details", User.Identity.GetUserId());
                 return RedirectToAction("Index");
             }
 
@@ -97,9 +125,12 @@ namespace RecruitSpike.Models
         {
             if (ModelState.IsValid)
             {
+                //set user id so user doesn't have to specify it 
+                profile.Id = User.Identity.GetUserId();
                 db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                RedirectToAction("Index");
+                //return RedirectToAction("Details", User.Identity.GetUserId());
             }
             ViewBag.Id = new SelectList(db.AspNetUsers, "Id", "Email", profile.Id);
             ViewBag.EducationID = new SelectList(db.Educations, "EducationID", "EdLevel", profile.EducationID);
@@ -132,6 +163,7 @@ namespace RecruitSpike.Models
             Profile profile = db.Profiles.Find(id);
             db.Profiles.Remove(profile);
             db.SaveChanges();
+            //return RedirectToAction("Details", id);
             return RedirectToAction("Index");
         }
 

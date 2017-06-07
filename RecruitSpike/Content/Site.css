@@ -9,6 +9,21 @@
     padding-right: 15px;
 }
 
+/* All sections should take one screen length at minimum */
+/*div#homepage, section {
+    min-height: 90vh;
+}
+section {
+    margin-top:50px;
+}*/
+section h1 {
+    padding-top:10vh;
+    min-height:90vh;
+}
+#homepage {
+    min-height:90vh;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -21,4 +36,19 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+/* format main navbar */
+div#mainnav.navbar-fixed-top {
+    border-bottom: 10px solid red;
+    /*border-top: 10px solid red;*/
+    background-color: #f4f4f4;
+    background-color: white;
+}
+
+div#mainnav.navbar-fixed-top {
+    border-width: 5px 0px 5px;
+}
+
+div#mainnav.navbar-fixed-top a, #mainnav.navbar-brand {
+    color: navy;
 }
